@@ -51,6 +51,20 @@ const styles = theme => ({
 
 });
 
+const ListeNom = (props) => {
+/*
+    const {persons} =props.stateFromFormulaire;
+    const listPersons = persons.map(<div key={persons.id}>
+    <li>{persons.nom}</li>
+    </div>
+    );
+    return (<ul>{listPersons}</ul>);
+    */
+    const {person} =props.stateFromFormulaire;
+    return (<div>{person}</div>);
+}
+
+
 
 class Formulaire extends React.Component {
     constructor(props) {
@@ -60,6 +74,12 @@ class Formulaire extends React.Component {
             age: '28',
             open: false,
             isSubmit: false,
+            person: "",
+            persons:[
+                {id: 1, nom: '' },
+                {id: 2, nom: ''}
+            ],
+
         }
         ;
         this.handleChange = this.handleChange.bind(this);
@@ -74,8 +94,7 @@ class Formulaire extends React.Component {
         this.setState({
                 [key]: event.target.value,
             });
-
-    }
+    };
     handleClose = () => {
         this.setState({ open: false });
     };
@@ -94,9 +113,10 @@ class Formulaire extends React.Component {
 
     render() {
         const { classes } = this.props;
-        let {genre}=this.state;
+        let {genre,isSubmit}=this.state;
 
-        return (
+        return isSubmit?  ( <div><ListeNom stateFromFormulaire={this.state} /></div>)
+            :(
             <div className={classes.root}>
 
 
@@ -114,7 +134,7 @@ class Formulaire extends React.Component {
                         <FormControlLabel value="Mr" control={<Radio />} label="Homme" />
                     </RadioGroup>
                 </FormControl>
-
+                <form onSubmit={this.handleSubmit}  >
                 <TextField
                     defaultValue=""
                     label={genre}
@@ -130,9 +150,14 @@ class Formulaire extends React.Component {
                         shrink: true,
                         className: classes.bootstrapFormLabel,
                     }}
+                    value={this.state.person}
+                    onChange={this.handleChange('person')}
                 />
+                    <input type="submit" value="Envoyer" />
+                </form>
                 <form autoComplete="off">
-                    <Button className={classes.button} onClick={this.handleOpen}>
+                    <Button className={classes.button}
+                            onClick={this.handleOpen}>
                         Motiv de reclamation
                     </Button>
                     <FormControl className={classes.formControBox}>
