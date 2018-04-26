@@ -1,4 +1,4 @@
-l
+
 import {ADD_NAME_TO_LIST,REMOVE_NAME_TO_LIST} from './actionTypes';
 
 export function addNameToList(name) {
