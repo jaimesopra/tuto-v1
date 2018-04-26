@@ -5,6 +5,9 @@ import Radio, { RadioGroup } from 'material-ui/Radio';
 import { FormControl, FormControlLabel } from 'material-ui/Form';
 import Button from 'material-ui/Button';
 import { withStyles } from 'material-ui/styles';
+import {addNameToList} from '../actions/action';
+import {  compose } from "redux";
+import { connect } from 'react-redux';
 
 const styles = theme => ({
     root: {
@@ -88,4 +91,16 @@ class Formulaire extends React.Component {
 Formulaire.propTypes = {
     classes: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(Formulaire);
+const mapStateToProps=(state)=>{
+    return {names: state};
+};
+const mapDispatchToProps=(dispatch)=>({
+        addNameToList: name => {
+            dispatch(addNameToList(name));
+        }
+    }
+);
+
+
+
+export default compose(withStyles(styles),connect(mapStateToProps,mapDispatchToProps))(Formulaire);
