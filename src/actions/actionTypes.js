@@ -1,0 +1,3 @@
+
+export const ADD_NAME_TO_LIST="ADD_NAME_TO_LIST";
+export const REMOVE_NAME_TO_LIST="REMOVE_NAME_TO_LIST";

@@ -44,6 +44,7 @@ class Formulaire extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         this.props.addNameToList(this.state.name);
+        this.props.addHommes(this.state.genre);
 
     }
 
