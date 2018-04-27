@@ -35,7 +35,7 @@ class App extends React.Component {
 
     return (
             <div>
-                <Formulaire addNameToList={this.addNameToList} addHommes={this.addHommes} />
+                <Formulaire  addHommes={this.addHommes} />
                 <ListNames countHomme={countHomme} countFemme={countFemme} />
             </div>
             )

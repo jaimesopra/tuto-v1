@@ -1,4 +1,4 @@
-import {initialState}from '../store/initialState';
+import {initialState,}from '../store/initialState';
 import {ADD_NAME_TO_LIST} from '../actions/actionTypes';
 import {REMOVE_NAME_TO_LIST} from '../actions/actionTypes'
 

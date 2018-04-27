@@ -1,12 +1,17 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import{ connect } from 'react-redux';
+import Button from 'material-ui/Button';
+import {removeNameToList} from '../actions/action';
+
 
 const ListNames = (props) => {
+
     return (
         <div>
             <h2>Liste de noms </h2>
             <ul>
-                { props.names.map(x=> <ListItem nameItem={x}/>)}
+                { props.names.map(x=> <ListItem nameItem={x} removeNameToList={props.removeNameToList}/>)}
+
             </ul>
             <p>Il y a {props.countHomme} hommes</p>
             <p>Il y a {props.countFemme} femmes</p>
@@ -16,13 +21,35 @@ const ListNames = (props) => {
 
 
 
-
 const ListItem = (props) =>
-            <li>{props.nameItem}</li>
+
+            <li>
+                <Button  onClick={props.removeNameToList(props.nameItem)} type="submit"  color="primary" >
+                    Effacer
+                </Button>
+                {props.nameItem}
+
+            </li>
 ;
+
+
+
 const mapStateToProps=(state)=>{
     return {names: state};
     };
 
 
-export default connect(mapStateToProps)(ListNames);
+
+
+const mapDispatchToProps=(dispatch)=>({
+
+        removeNameToList: name =>event=> {
+            event.preventDefault();
+            dispatch(removeNameToList(name));
+        }
+    }
+);
+
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(ListNames);

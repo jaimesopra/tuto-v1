@@ -1,1 +1,1 @@
-export const initialState=['effsd','hi','salut'];
+export const initialState=['Jaime','Pierre','Toto'];
