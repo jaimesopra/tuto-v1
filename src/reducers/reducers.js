@@ -1,7 +1,7 @@
-import {initialState,}from '../store/initialState';
+import {initialState,initialStatePersons,}from '../store/initialState';
 import {ADD_NAME_TO_LIST} from '../actions/actionTypes';
 import {REMOVE_NAME_TO_LIST} from '../actions/actionTypes'
-
+import {AJOUTER_PERSONS} from '../actions/actionTypes'
 
 
 export const names =(state=initialState,action) =>{
@@ -14,3 +14,12 @@ export const names =(state=initialState,action) =>{
             return state;
     }
 }
+export const persons =(state=initialStatePersons,action) =>{
+    switch (action.type){
+        case AJOUTER_PERSONS :
+            return [...state,action.person];
+        default:
+            return state;
+    }
+}
+

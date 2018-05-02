@@ -10,7 +10,7 @@ const ListNames = (props) => {
         <div>
             <h2>Liste de noms </h2>
             <ul>
-                { props.names.map(x=> <ListItem nameItem={x} removeNameToList={props.removeNameToList}/>)}
+                { props.persons.map(x=> <ListItem nameItem={x.name} genre={x.genre} removeNameToList={props.removeNameToList}/>)}
 
             </ul>
             <p>Il y a {props.countHomme} hommes</p>
@@ -23,25 +23,29 @@ const ListNames = (props) => {
 
 const ListItem = (props) =>
 
-            <li>
-                <Button  onClick={props.removeNameToList(props.nameItem)} type="submit"  color="primary" >
-                    Effacer
-                </Button>
-                {props.nameItem}
+        <li>
+            <Button  onClick={props.removeNameToList(props.nameItem)} type="submit"  color="primary" >
+                Effacer
+            </Button>
+            {`${props.genre} ${props.nameItem}`}
 
-            </li>
-;
 
+        </li>
+    ;
 
 
 const mapStateToProps=(state)=>{
-    return {names: state};
+    return {
+        names: state.names,
+        persons: state.persons,
     };
+};
 
 
 
 
 const mapDispatchToProps=(dispatch)=>({
+
 
         removeNameToList: name =>event=> {
             event.preventDefault();

@@ -6,6 +6,7 @@ import { FormControl, FormControlLabel } from 'material-ui/Form';
 import Button from 'material-ui/Button';
 import { withStyles } from 'material-ui/styles';
 import {addNameToList} from '../actions/action';
+import {ajouterPersons} from '../actions/action';
 import {  compose } from "redux";
 import { connect } from 'react-redux';
 
@@ -46,7 +47,9 @@ class Formulaire extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.props.addNameToList(this.state.name);
+        let person={ id: this.props.persons.length ,name: this.state.name, genre: this.state.genre }
+        this.props.ajouterPersons(person);
+            this.props.addNameToList(this.state.name);
         this.props.addHommes(this.state.genre);
 
     }
@@ -92,11 +95,17 @@ Formulaire.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 const mapStateToProps=(state)=>{
-    return {names: state};
+    return {
+        names: state.names,
+        persons: state.persons,
+    };
 };
 const mapDispatchToProps=(dispatch)=>({
         addNameToList: name => {
             dispatch(addNameToList(name));
+        },
+        ajouterPersons: person => {
+            dispatch(ajouterPersons(person));
         }
     }
 );
